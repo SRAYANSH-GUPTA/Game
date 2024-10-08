@@ -4,11 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="letter.js"></script>
+    <script src="rock.js"></script>
     <style>
         div{
             position: absolute;
             font-size: 20px ;
+        }
+        body
+        {
+            background-color: white;
+            color: white;
+            
+        }
+        .rock
+        {
+            position: absolute;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+        }
+        #player
+        {
+            position: absolute;
+        }
+        #area
+        {
+            border: 5px solid black;
         }
     </style>
 </head>
@@ -16,7 +38,9 @@
     <!-- <img src="1.jpg" alt="" id="keys" height="200px " width="200px"> -->
      <div>SCORE: <span id="score"></span></div>
      <!-- <div>Max score <span id="maxscore"></span></div> -->
-
-     <div id="area"></div>
+     <img src="spaceship.png    " alt="flying_mario" id="player" height="200px" width="200px">
+     <div id="area">
+        
+     </div>
 </body>
 </html>

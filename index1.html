@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let speed = 1;
+        let dir = 1;
+        let buttonq;
+        function animation()
+        {
+            
+            buttonq.style.left = speed + 'px';
+            speed += dir;
+        
+        if(Math.abs(speed) >= 50)
+        {
+            dir *= -1;
+        }
+        requestAnimationFrame(animation);
+    };
+    
+        document.addEventListener("DOMContentLoaded",()=>
+    {
+        buttonq = document.querySelector("#buttonmove");
+        animation();
+    });
+    </script>
+    <style>
+        div{
+            position: absolute;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="buttonmove">Lets test you you Skills</div>
+
+    <img src="" alt="">
+    <button onclick="window.location.href='index.html'">Start Game</button>
+</body>
+</html>
