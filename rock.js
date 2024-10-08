@@ -55,13 +55,39 @@ function move()
         clearInterval(moveid);
 
     }
+    checkCollision();
         
 }
+function checkCollision() {
+    const playerRect = player.getBoundingClientRect();
 
+    for (let i = 0; i < rocks.length; i++) {
+        const rockRect = rocks[i].symbol.getBoundingClientRect();
+
+    
+        if (
+            playerRect.left < rockRect.right &&
+            playerRect.right > rockRect.left &&
+            playerRect.top < rockRect.bottom &&
+            playerRect.bottom > rockRect.top
+        ) {
+            gameOver(); 
+            break;
+        }
+    }
+}
+
+
+function gameOver() {
+    clearInterval(moveid);
+    clearInterval(generateid);
+    updatescore.innerHTML = "Game Over!";
+    
+}
 document.addEventListener('keydown', (event) => {
     const button = event.key;
     let playerX = parseInt(player.style.left) || 0;
-     let playerY = parseInt(player.style.top) || 0;
+     let playerY = parseInt(player.style.top) || 400;
      let step = 10;
      switch(button)
      {
@@ -111,7 +137,7 @@ document.addEventListener("DOMContentLoaded",()=>
         }
     let maxscore = localStorage.getItem('score');
     console.log(input);
-    generateid = setInterval(generate,1000);
+    generateid = setInterval(generate,600);
     moveid = setInterval(move,100);
     
     
