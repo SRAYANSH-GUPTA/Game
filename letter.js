@@ -1,7 +1,15 @@
 let input = []; 
-let h, speeddir, ipos, fpos,letter; 
+let h, speeddir, ipos, fpos,letter,updatescore; 
 let letters = [];
 let classname = 0;
+let score = 0;
+let moveid = null;
+let generateid = null;
+
+function loose()
+{
+    updatescore.innerHTML = "Lost";
+};
 function generate()
 {
     let ascii = 33 + Math.floor(Math.random()*40);
@@ -12,12 +20,11 @@ function generate()
     letter.className = 'letter' + `${classname}`;
     classname++;
     console.log(letter);   
-    let y = Math.floor(Math.random()*(window.innerWidth-letter.style.width));
-    console.log(window.innerWidth);
+    let y = Math.floor(Math.random()*(window.innerWidth-2 * letter.style.width));
     letter.style.top = ipos + 'px';
     letter.style.left  = y + "px";
     area.appendChild(letter);
-    letters.push({symbol : letter, position : ipos, speeddir : 1,cpos : letter.className});
+    letters.push({symbol : letter, position : ipos, speeddir : 2,cpos : letter.className});
     
 };
 function move()
@@ -39,6 +46,12 @@ function move()
         }
         currentletter.speeddir = speeddir;
    }
+   if(letters.length > 30)
+    {
+        clearInterval(generateid);
+        clearInterval(moveid);
+        loose();
+    }
         
 }
 
@@ -49,20 +62,25 @@ document.addEventListener('keydown', (event) => {
     if (matched) {
         matched.symbol.remove();
         letters = letters.filter(letterObj => letterObj !== matched);
+        score +=1;
+        console.log(`score = ${score}`);
+        updatescore.innerHTML = `${score}`;
     }
+    
 });
      
 document.addEventListener("DOMContentLoaded",()=>
 {
     let area = document.querySelector("area");
+    updatescore = document.querySelector("#score");
     input = [];
     ipos = 100;
     h = ipos;   
     fpos = window.innerHeight-100;
     speeddir = 1; 
     console.log(input);
-    setInterval(generate,1000);
-    setInterval(move,100);
+    generateid = setInterval(generate,1500);
+    moveid = setInterval(move,100);
     
     
 
