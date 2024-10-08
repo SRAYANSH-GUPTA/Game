@@ -144,7 +144,7 @@ document.addEventListener('keydown', (event) => {
             if(playerX - step > 0){playerX -= step;} 
             break;
         case 'ArrowRight':
-            if(playerX + step < window.innerHeight){playerX += step;}   
+            if(playerX + step + player.width< window.innerWidth){playerX += step;}   
             break;
         
         }
