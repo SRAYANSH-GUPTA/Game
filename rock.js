@@ -1,5 +1,5 @@
 let input = []; 
-let h, speeddir, ipos, fpos,rock,updatescore,maxscore,player,missileq; 
+let h, speeddir, ipos, fpos,rock,updatescore,maxscore,player,missileq,playerX,playerY; 
 let rocks = [];
 let classname = 0;
 let score = 0;
@@ -134,16 +134,17 @@ document.addEventListener('keydown', (event) => {
             killRocks();
             break;
         case 'ArrowUp':
-            playerY -= step; 
+            if(playerY -step > ipos)
+                {playerY -= step;} 
             break;
         case 'ArrowDown':
-            playerY += step; 
+            if(playerY + step < fpos){playerY += step;} 
             break;
         case 'ArrowLeft':
-            playerX -= step; 
+            if(playerX - step > 0){playerX -= step;} 
             break;
         case 'ArrowRight':
-            playerX += step;   
+            if(playerX + step < window.innerHeight){playerX += step;}   
             break;
         
         }
@@ -177,8 +178,8 @@ document.addEventListener("DOMContentLoaded",()=>
     input = [];
     ipos = 100;
     h = ipos;   
-    let playerX = parseInt(player.style.left) || 0;
-    let playerY = parseInt(player.style.top) || 400;
+    playerX = parseInt(player.style.left) || 0;
+    playerY = parseInt(player.style.top) || 400;
     player.style.left = playerX + 'px';
     player.style.top = playerY + 'px';
     fpos = window.innerHeight-100;
