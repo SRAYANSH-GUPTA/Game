@@ -21,26 +21,21 @@
         .rock
         {
             position: absolute;
-    font-size: 30px;
-    font-weight: bold;
-    color: #333;
-    white-space: nowrap;
+            border-radius: 50%;
         }
         #player
         {
             position: absolute;
         }
-        #area
-        {
-            border: 5px solid black;
-        }
+        
     </style>
 </head>
 <body>
     <!-- <img src="1.jpg" alt="" id="keys" height="200px " width="200px"> -->
-     <div>SCORE: <span id="score"></span></div>
+     <img src="missileanimation/1 (0).jpg" alt="" id="missile" height="100px" width="300px" style="z-index: -1;">
+     <div style="z-index: -2;">STATUS: <span id="score">PLAY</span></div>
      <!-- <div>Max score <span id="maxscore"></span></div> -->
-     <img src="spaceship.png    " alt="flying_mario" id="player" height="200px" width="200px">
+     <img src="spaceship.png" alt="flying_mario" id="player" height="100px" width="50px">
      <div id="area">
         
      </div>

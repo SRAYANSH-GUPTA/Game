@@ -1,23 +1,36 @@
 let input = []; 
-let h, speeddir, ipos, fpos,rock,updatescore,maxscore,player; 
+let h, speeddir, ipos, fpos,rock,updatescore,maxscore,player,missileq; 
 let rocks = [];
 let classname = 0;
 let score = 0;
 let moveid = null;
 let generateid = null;
-
-
-function loose()
+let missileid = null;
+let missilenum = 0;
+function missile()
 {
-    updatescore.innerHTML = "Lost";
-};
+    if(missilenum > 25){missilenum = 0;}
+    missileq.src = `missileanimation/1 (${missilenum++}).jpg`;
+}
+function missilemove()
+{
+    let mposx = 0;
+    let mposy = 0;
+
+}
+function gamewin()
+{
+    clearInterval(moveid);
+    clearInterval(generateid);
+    updatescore.innerHTML = "Win!!";
+}
 function generate()
 {
-    let imgn = Math.floor(Math.random()*3);
+    let imgn = Math.floor(Math.random()*8);
     input.push(`${imgn}.png`);
     console.log(imgn);
     rock = document.createElement("img");
-    rock.src = `${imgn}.png`
+    rock.src = `rockimg/${imgn}.png`
     rock.className = 'rock';
     rock.style.width = `${60}px`;
     rock.style.height = `${60}px`;
@@ -27,7 +40,7 @@ function generate()
     rock.style.top = ipos + 'px';
     rock.style.left  = y + "px";
     area.appendChild(rock);
-    rocks.push({symbol : rock, position : ipos, speeddir : 2});
+    rocks.push({symbol : rock, position : ipos, speeddir : 5});
     
 };
 function move()
@@ -49,10 +62,9 @@ function move()
         }
         currentrock.speeddir = speeddir;
    }
-   if(rocks.length > 80)
+   if(rocks.length > 30)
     {
-        clearInterval(generateid);
-        clearInterval(moveid);
+        gameOver();
 
     }
     checkCollision();
@@ -66,8 +78,8 @@ function checkCollision() {
 
     
         if (
-            playerRect.left < rockRect.right &&
-            playerRect.right > rockRect.left &&
+            playerRect.left  < rockRect.right &&
+            playerRect.right  > rockRect.left &&
             playerRect.top < rockRect.bottom &&
             playerRect.bottom > rockRect.top
         ) {
@@ -76,8 +88,35 @@ function checkCollision() {
         }
     }
 }
+function killRocks() {
+    const playerRect = player.getBoundingClientRect();
+    const breakArea = {
+        left: playerRect.left,
+        right: playerRect.right,
+        top: playerRect.top ,
+        bottom: playerRect.bottom ,
+    };
 
+    for (let i = rocks.length - 1; i >= 0; i--) {
+        const rockRect = rocks[i].symbol.getBoundingClientRect();
 
+    
+        if (
+            rockRect.left + 30 < breakArea.right &&
+            rockRect.right + 30> breakArea.left &&
+            rockRect.top + 30 < breakArea.bottom &&
+            rockRect.bottom + 30 > breakArea.top
+        ) {
+    
+            area.removeChild(rocks[i].symbol);
+            rocks.splice(i, 1); 
+        }
+    }
+}
+function bomb()
+{
+
+}
 function gameOver() {
     clearInterval(moveid);
     clearInterval(generateid);
@@ -86,11 +125,14 @@ function gameOver() {
 }
 document.addEventListener('keydown', (event) => {
     const button = event.key;
-    let playerX = parseInt(player.style.left) || 0;
-     let playerY = parseInt(player.style.top) || 400;
+    playerX = parseInt(player.style.left) || 0;
+     playerY = parseInt(player.style.top) || 400;
      let step = 10;
      switch(button)
      {
+        case ' ':
+            killRocks();
+            break;
         case 'ArrowUp':
             playerY -= step; 
             break;
@@ -103,9 +145,14 @@ document.addEventListener('keydown', (event) => {
         case 'ArrowRight':
             playerX += step;   
             break;
+        
         }
         player.style.left = playerX + 'px';
         player.style.top = playerY + 'px';
+        if(playerX > window.innerWidth - player.offsetHeight)
+            {
+             gamewin();   
+            }
     console.log(button)
     
     
@@ -126,9 +173,14 @@ document.addEventListener("DOMContentLoaded",()=>
     let area = document.querySelector("area");
     updatescore = document.querySelector("#score");
     player = document.querySelector("#player");
+    missileq = document.querySelector("#missile");
     input = [];
     ipos = 100;
     h = ipos;   
+    let playerX = parseInt(player.style.left) || 0;
+    let playerY = parseInt(player.style.top) || 400;
+    player.style.left = playerX + 'px';
+    player.style.top = playerY + 'px';
     fpos = window.innerHeight-100;
     speeddir = 1; 
     if(!localStorage.getItem('maxscore'))
@@ -137,8 +189,9 @@ document.addEventListener("DOMContentLoaded",()=>
         }
     let maxscore = localStorage.getItem('score');
     console.log(input);
-    generateid = setInterval(generate,600);
-    moveid = setInterval(move,100);
+    generateid = setInterval(generate,500);
+    moveid = setInterval(move,50);
+    missileid = setInterval(missile,100);
     
     
 
