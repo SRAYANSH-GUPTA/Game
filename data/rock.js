@@ -62,11 +62,7 @@ function move()
         }
         currentrock.speeddir = speeddir;
    }
-   if(rocks.length > 30)
-    {
-        gameOver();
-
-    }
+   
     checkCollision();
         
 }
