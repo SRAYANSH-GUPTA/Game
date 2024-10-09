@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="rock.js"></script>
+    <style>
+        div{
+            position: absolute;
+            font-size: 20px ;
+        }
+        body
+        {
+            background-color: white;
+            color: white;
+            background-image: url('images/background.jpg');
+            background-repeat: no-repeat;
+            
+        }
+        .rock
+        {
+            position: absolute;
+            border-radius: 50%;
+        }
+        #player
+        {
+            position: absolute;
+        }
+        #heading
+        {
+            text-align: center;
+            position: static;
+            justify-content: center;
+            font-size: 40px;
+        }
+        #misiile
+        {
+            position: relative;
+            margin-right: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+     <div id="heading">Help Me Cross This Belt <img src="rockimg/0.png" alt="" id="missile" height="50px" width="60px"></div>
+     <!--  -->
+     <div style="z-index: -2;">STATUS: <span id="score">PLAY</span></div>
+     <!-- <div>Max score <span id="maxscore"></span></div> -->
+     <img src="images/spaceship.png" alt="flying_mario" id="player" height="100px" width="50px">
+     <div id="area">
+        
+     </div>
+</body>
+</html>
