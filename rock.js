@@ -83,6 +83,9 @@ function checkCollision() {
             playerRect.top < rockRect.bottom &&
             playerRect.bottom > rockRect.top
         ) {
+            player.src = "images/fire.png";
+            player.style.height = 240 + 'px';
+            player.style.width = 200 + 'px';
             gameOver(); 
             break;
         }

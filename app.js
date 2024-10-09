@@ -1,8 +1,7 @@
 let mayhem,fire,heading,meteor,swap;
 function clash()
 {
-    meteor = document.querySelector("#meteor");
-    mayhem = document.querySelector("#mayhem");
+    
     meteor.style.left = 0 + 'px';
 }
 function change()
@@ -22,6 +21,8 @@ document.addEventListener("DOMContentLoaded",()=>
 {
     fire = document.querySelector("#fire");
     heading = document.querySelector("#headingmove")
+    meteor = document.querySelector("#meteor");
+    mayhem = document.querySelector("#mayhem");
     setInterval(change,2000);
     
 })
