@@ -1,5 +1,5 @@
 let input = []; 
-let h, speeddir, ipos, fpos,rock,updatescore,maxscore,player,missileq,playerX,playerY,audio,goaudio; 
+let h, speeddir, ipos, fpos,rock,updatescore,maxscore,player,missileq,playerX,playerY,audio,goaudio,vicAudio; 
 let rocks = [];
 let classname = 0;
 let score = 0;
@@ -23,6 +23,9 @@ function gamewin()
     clearInterval(moveid);
     clearInterval(generateid);
     audio.pause();
+    vicAudio.play();
+    window.alert("Winner");
+    window.location.href = "game.html"
     updatescore.innerHTML = "Win!!";
 }
 function generate()
@@ -186,12 +189,12 @@ document.addEventListener("DOMContentLoaded",()=>
     playerX = parseInt(player.style.left) || 0;
     playerY = parseInt(player.style.top) || 400;
     audio = document.querySelector("#audio");
-    
     goaudio = document.querySelector("#overaudio");
     player.style.left = playerX + 'px';
     player.style.top = playerY + 'px';
     fpos = window.innerHeight-100;
     speeddir = 1; 
+    vicAudio = document.querySelector("#victory")
     if(!localStorage.getItem('maxscore'))
         {
             localStorage.setItem('maxscore',0);
