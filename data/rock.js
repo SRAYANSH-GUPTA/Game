@@ -5,7 +5,13 @@ let classname = 0;
 let score = 0;
 let moveid = null;
 let generateid = null;
-
+let missileid = null;
+let missilenum = 0;
+function missile()
+{
+    if(missilenum > 8){missilenum = 0;}
+    missileq.src = `rockimg/${missilenum++}.png`;
+}
 
 
 function gamewin()
@@ -57,10 +63,7 @@ function move()
         }
         currentrock.speeddir = speeddir;
    }
-   if(input.length > 50){
-    window.alert("Asteroids Exceed not possible");
-    gameOver();
-   }
+   
     checkCollision();
         
 }
