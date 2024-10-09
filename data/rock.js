@@ -57,7 +57,11 @@ function move()
         }
         currentrock.speeddir = speeddir;
    }
-   
+   if(input.length > 50){
+    window.alert("Asteroids Exceed not possible");
+    gameOver();
+   }
+    checkCollision();
         
 }
 function checkCollision() {
@@ -68,7 +72,7 @@ function checkCollision() {
 
     
         if (
-            playerRect.left < rockRect.right &&
+            playerRect.left  < rockRect.right &&
             playerRect.right  > rockRect.left &&
             playerRect.top < rockRect.bottom &&
             playerRect.bottom > rockRect.top
@@ -106,10 +110,7 @@ function killRocks() {
         }
     }
 }
-function bomb()
-{
 
-}
 function gameOver() {
     clearInterval(moveid);
     clearInterval(generateid);
@@ -146,7 +147,6 @@ document.addEventListener('keydown', (event) => {
             break;
         
         }
-        checkCollision();
         player.style.left = playerX + 'px';
         player.style.top = playerY + 'px';
         if(playerX > window.innerWidth - player.offsetHeight)
