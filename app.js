@@ -1,8 +1,18 @@
-let mayhem,fire,heading,meteor,swap;
+let mayhem,fire,heading,meteor,rocket1,rocket2;
+let pos = 1;
 function clash()
 {
+    rocket1.style.left = pos + 'px';
+    rocket2.style.right = pos + 'px';
+    pos += 1;
+    console.log(pos);
+    if(pos>400)
+    {
+        pos = 0;
+        rocket1.style.display = rocket2.style.display = "none";
+        change();
+    }
     
-    meteor.style.left = 0 + 'px';
 }
 function change()
 {
@@ -15,14 +25,15 @@ function change()
         heading.style.display = "block";
         fire.style.display = "none";
     }
+    rocket1.style.display = rocket2.style.display = "block";
     
 }
 document.addEventListener("DOMContentLoaded",()=>
 {
     fire = document.querySelector("#fire");
     heading = document.querySelector("#headingmove")
-    meteor = document.querySelector("#meteor");
-    mayhem = document.querySelector("#mayhem");
-    setInterval(change,2000);
+    rocket1 = document.querySelector("#spcl");
+    rocket2 = document.querySelector("#spcr");
+    setInterval(clash,20);
     
 })
