@@ -1,5 +1,5 @@
 let input = []; 
-let h, speeddir, ipos, fpos,rock,updatescore,maxscore,player,missileq,playerX,playerY; 
+let h, speeddir, ipos, fpos,rock,updatescore,maxscore,player,missileq,playerX,playerY,audio; 
 let rocks = [];
 let classname = 0;
 let score = 0;
@@ -124,6 +124,7 @@ function gameOver() {
     clearInterval(moveid);
     clearInterval(generateid);
     updatescore.innerHTML = "Game Over!";
+    audio.pause();
     
 }
 document.addEventListener('keydown', (event) => {
@@ -183,6 +184,8 @@ document.addEventListener("DOMContentLoaded",()=>
     h = ipos;   
     playerX = parseInt(player.style.left) || 0;
     playerY = parseInt(player.style.top) || 400;
+    audio = document.querySelector("#audio");
+    audio.play();
     player.style.left = playerX + 'px';
     player.style.top = playerY + 'px';
     fpos = window.innerHeight-100;
