@@ -22,6 +22,7 @@ function gamewin()
 {
     clearInterval(moveid);
     clearInterval(generateid);
+    audio.pause();
     updatescore.innerHTML = "Win!!";
 }
 function generate()
