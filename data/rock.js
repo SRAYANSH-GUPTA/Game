@@ -63,6 +63,10 @@ function move()
         }
         currentrock.speeddir = speeddir;
    }
+   if(input.length > 50){
+    window.alert("Asteroids Exceed not possible");
+    gameOver();
+   }
    
     checkCollision();
         
