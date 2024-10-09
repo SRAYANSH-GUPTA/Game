@@ -5,19 +5,9 @@ let classname = 0;
 let score = 0;
 let moveid = null;
 let generateid = null;
-let missileid = null;
-let missilenum = 0;
-function missile()
-{
-    if(missilenum > 8){missilenum = 0;}
-    missileq.src = `rockimg/${missilenum++}.png`;
-}
-function missilemove()
-{
-    let mposx = 0;
-    let mposy = 0;
 
-}
+
+
 function gamewin()
 {
     clearInterval(moveid);
@@ -68,7 +58,6 @@ function move()
         currentrock.speeddir = speeddir;
    }
    
-    checkCollision();
         
 }
 function checkCollision() {
@@ -79,14 +68,14 @@ function checkCollision() {
 
     
         if (
-            playerRect.left  < rockRect.right &&
+            playerRect.left < rockRect.right &&
             playerRect.right  > rockRect.left &&
             playerRect.top < rockRect.bottom &&
             playerRect.bottom > rockRect.top
         ) {
             player.src = "images/fire.png";
-            player.style.height = 240 + 'px';
-            player.style.width = 200 + 'px';
+            player.style.height = 80 + 'px';
+            player.style.width = 40 + 'px';
             gameOver(); 
             break;
         }
@@ -124,6 +113,7 @@ function bomb()
 function gameOver() {
     clearInterval(moveid);
     clearInterval(generateid);
+    player.src = "images/fire.png";
     updatescore.innerHTML = "Game Over!";
     audio.pause();
     goaudio.play();
@@ -156,6 +146,7 @@ document.addEventListener('keydown', (event) => {
             break;
         
         }
+        checkCollision();
         player.style.left = playerX + 'px';
         player.style.top = playerY + 'px';
         if(playerX > window.innerWidth - player.offsetHeight)
