@@ -4,40 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        let speed = 1;
-        let dir = 1;
-        let buttonq;
-        function animation()
-        {
-            
-            buttonq.style.left = speed + 'px';
-            speed += dir;
-        
-        if(Math.abs(speed) >= 50)
-        {
-            dir *= -1;
-        }
-        requestAnimationFrame(animation);
-    };
+    <link rel="stylesheet" href="style.css">
+   
     
-        document.addEventListener("DOMContentLoaded",()=>
-    {
-        buttonq = document.querySelector("#buttonmove");
-        animation();
-    });
-    </script>
-    <style>
-        div{
-            position: absolute;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
-    <div id="buttonmove">Lets test you you Skills</div>
-
-    <img src="" alt="">
-    <button onclick="window.location.href='index.html'">Start Game</button>
+    <script src="app.js"></script>
+    <div id="headingmove"><span id="meteor">Meteor</span> <span id="mayhem">Mayhem</span></div>
+    <img src="images/fire.png" alt="fire" id="fire" height="110px" width="400px">
+    <button onclick="window.location.href='index.html'" id="button">Start Game</button>
 </body>
 </html>

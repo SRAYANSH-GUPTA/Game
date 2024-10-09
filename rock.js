@@ -9,8 +9,8 @@ let missileid = null;
 let missilenum = 0;
 function missile()
 {
-    if(missilenum > 25){missilenum = 0;}
-    missileq.src = `missileanimation/1 (${missilenum++}).jpg`;
+    if(missilenum > 8){missilenum = 0;}
+    missileq.src = `rockimg/${missilenum++}.png`;
 }
 function missilemove()
 {
