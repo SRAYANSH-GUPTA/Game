@@ -1,5 +1,5 @@
 let input = []; 
-let h, speeddir, ipos, fpos,rock,updatescore,maxscore,player,missileq,playerX,playerY,audio; 
+let h, speeddir, ipos, fpos,rock,updatescore,maxscore,player,missileq,playerX,playerY,audio,goaudio; 
 let rocks = [];
 let classname = 0;
 let score = 0;
@@ -41,6 +41,7 @@ function generate()
     rock.style.left  = y + "px";
     area.appendChild(rock);
     rocks.push({symbol : rock, position : ipos, speeddir : 5});
+    audio.play();
     
 };
 function move()
@@ -121,13 +122,16 @@ function gameOver() {
     clearInterval(generateid);
     updatescore.innerHTML = "Game Over!";
     audio.pause();
-    
+    goaudio.play();
+    window.alert("Game Over");
+    window.location.href = "game.html";
 }
 document.addEventListener('keydown', (event) => {
     const button = event.key;
     playerX = parseInt(player.style.left) || 0;
      playerY = parseInt(player.style.top) || 400;
      let step = 10;
+     
      switch(button)
      {
         case ' ':
@@ -181,7 +185,8 @@ document.addEventListener("DOMContentLoaded",()=>
     playerX = parseInt(player.style.left) || 0;
     playerY = parseInt(player.style.top) || 400;
     audio = document.querySelector("#audio");
-    audio.play();
+    
+    goaudio = document.querySelector("#overaudio");
     player.style.left = playerX + 'px';
     player.style.top = playerY + 'px';
     fpos = window.innerHeight-100;
@@ -192,9 +197,11 @@ document.addEventListener("DOMContentLoaded",()=>
         }
     let maxscore = localStorage.getItem('score');
     console.log(input);
+    audio.play();
     generateid = setInterval(generate,500);
     moveid = setInterval(move,50);
     missileid = setInterval(missile,100);
+
     
     
 
